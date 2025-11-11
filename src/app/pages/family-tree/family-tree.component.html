@@ -1,0 +1,113 @@
+<div class="family-tree-container">
+  <!-- Tree Visualization -->
+  <div class="tree-visualization">
+    <div *ngFor="let generation of getSortedGenerations()" class="generation-row">
+      <div class="generation-header">
+        <h3>{{ getGenerationLabel(generation) }}</h3>
+      </div>
+
+      <div class="members-container">
+        <div
+          *ngFor="let member of getMembersForGeneration(generation)"
+          class="member-card-wrapper"
+        >
+          <!-- Member Card -->
+          <div
+            class="member-card"
+            [class.highlighted]="member.relation === 'You'"
+            [matTooltip]="member.birthDate ? 'Born: ' + member.birthDate : ''"
+          >
+            <!-- Avatar -->
+            <div class="avatar-container">
+              <img
+                *ngIf="member.avatar"
+                [src]="member.avatar"
+                [alt]="member.name"
+                class="avatar"
+              />
+              <div *ngIf="!member.avatar" class="avatar-placeholder">
+                <mat-icon>account_circle</mat-icon>
+              </div>
+            </div>
+
+            <!-- Member Info -->
+            <div class="member-info">
+              <h4 class="member-name">{{ member.name }}</h4>
+              <p class="member-relation">{{ member.relation }}</p>
+            </div>
+
+            <!-- Connection Line to Children -->
+            <div *ngIf="hasChildren(member)" class="children-indicator">
+              <mat-icon>expand_more</mat-icon>
+            </div>
+          </div>
+
+          <!-- Children Container (for visual hierarchy) -->
+          <div
+            *ngIf="hasChildren(member)"
+            class="children-wrapper"
+          >
+            <div class="connector-line"></div>
+            <div class="children-grid">
+              <div
+                *ngFor="let child of getChildren(member)"
+                class="child-item"
+              >
+                <div class="child-indicator">{{ child.name }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="stats-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Family Statistics</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Total Members</span>
+            <span class="stat-value">{{ familyTree.members.length }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Generations</span>
+            <span class="stat-value">{{ getSortedGenerations().length }}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Member Details List -->
+  <div class="details-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>All Family Members</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="members-list">
+          <div
+            *ngFor="let member of familyTree.members"
+            class="member-list-item"
+          >
+            <img
+              *ngIf="member.avatar"
+              [src]="member.avatar"
+              [alt]="member.name"
+              class="list-avatar"
+            />
+            <div class="list-member-info">
+              <span class="list-member-name">{{ member.name }}</span>
+              <span class="list-member-relation">{{ member.relation }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.dashboard-toolbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.toolbar-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-info {
+  margin-right: 16px;
+  color: white;
+  font-size: 14px;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 24px;
+  overflow: auto;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: 16px;
+}
+
+.loading-container p {
+  font-size: 16px;
+  color: #666;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.error-container mat-card {
+  max-width: 500px;
+  text-align: center;
+}
+
+.error-container h2 {
+  color: #d32f2f;
+  margin-bottom: 16px;
+}
+
+.family-tree-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.family-tree-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+mat-card-header {
+  margin-bottom: 16px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+mat-card-subtitle {
+  color: #999;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+
+  .toolbar-title {
+    font-size: 18px;
+  }
+
+  .user-info {
+    display: none;
+  }
+}

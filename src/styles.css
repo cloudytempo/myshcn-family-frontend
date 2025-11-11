@@ -1,1 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
+/* Angular Material Theme - Indigo/Pink */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Bootstrap - For utility classes and responsive grid */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Override Bootstrap defaults to avoid conflicts with Material */
+button {
+  border: none;
+  background: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Material Card Enhancements */
+mat-card {
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+              0 1px 1px 0 rgba(0, 0, 0, 0.14),
+              0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* Material Form Field Enhancements */
+mat-form-field {
+  width: 100%;
+}
+
+/* Material Button Enhancements */
+button[mat-raised-button],
+button[mat-stroked-button],
+button[mat-flat-button] {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Material Toolbar Enhancements */
+mat-toolbar {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading Spinner */
+mat-spinner {
+  margin: 20px auto;
+}
+
+/* Utility Classes */
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+.full-width { width: 100%; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: #999; }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 12px;
+  }
+}

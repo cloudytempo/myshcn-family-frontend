@@ -1,0 +1,94 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Family Tree App</mat-card-title>
+        <mat-card-subtitle>Sign In to Your Account</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Email Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+            />
+            <mat-error *ngIf="submitted && f['email'].errors">
+              <span *ngIf="f['email'].errors['required']">
+                Email is required
+              </span>
+              <span *ngIf="f['email'].errors['email']">
+                Please enter a valid email
+              </span>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="togglePasswordVisibility()"
+              type="button"
+            >
+              <mat-icon>
+                {{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+            </button>
+            <mat-error *ngIf="submitted && f['password'].errors">
+              <span *ngIf="f['password'].errors['required']">
+                Password is required
+              </span>
+              <span *ngIf="f['password'].errors['minlength']">
+                Password must be at least 6 characters
+              </span>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Demo Credentials Note -->
+          <div class="demo-info">
+            <p class="demo-label">Demo Credentials:</p>
+            <p class="demo-text">Email: {{ demoCredentials.email }}</p>
+            <p class="demo-text">Password: {{ demoCredentials.password }}</p>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="full-width login-button"
+            [disabled]="loading"
+          >
+            <mat-spinner *ngIf="loading" diameter="20" class="spinner"></mat-spinner>
+            {{ loading ? 'Signing In...' : 'Sign In' }}
+          </button>
+
+          <!-- Demo Fill Button -->
+          <button
+            mat-stroked-button
+            type="button"
+            class="full-width demo-button"
+            (click)="fillDemoCredentials()"
+            [disabled]="loading"
+          >
+            Fill Demo Credentials
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
