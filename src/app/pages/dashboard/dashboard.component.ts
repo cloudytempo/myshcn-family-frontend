@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadCurrentUser();
     this.loadFamilyTree();
+    this.loadDataFromApi();
   }
 
   ngOnDestroy() {
@@ -70,18 +71,39 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
+  loadDataFromApi(): void {
+     this.familyService
+      .getFamilyTree()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (tree: any) => {
+          console.log('Data from API loaded:', tree);
+          this.loading = false;
+        },
+        error: (error: any) => {
+          this.error = 'Failed to load family tree';
+          console.error('Error loading family tree:', error);
+          this.snackBar.open('Failed to load family tree', 'Close', {
+            duration: 5000
+          });
+          this.loading = false;
+        }
+      });
+  }
+
+
   private loadFamilyTree() {
     this.loading = true;
     this.familyService
       .getFamilyTree()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: tree => {
+        next: (tree: any) => {
           this.familyTree = tree;
           this.familyService.setFamilyTree(tree);
           this.loading = false;
         },
-        error: error => {
+        error: (error: any) => {
           this.error = 'Failed to load family tree';
           console.error('Error loading family tree:', error);
           this.snackBar.open('Failed to load family tree', 'Close', {
